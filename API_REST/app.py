@@ -100,6 +100,64 @@ def get_log_action_admin():
     except Exception as e:
         return jsonify({'error': f'Erreur base de données action_admin : {str(e)}'}), 500
 
+@app.route('/import-logs', methods=['POST'])
+def import_logs():
+    data = request.get_json()
+    if not data or 'type' not in data:
+        return jsonify({"error": "Invalid data format"}), 400
+    
+    log_type = data['type']
+    
+    # Déterminer le chemin du fichier log
+    if log_type == 'usb':
+        log_path = '/home/station-blanche/logs/log_usb.log'
+    elif log_type == 'file':
+        log_path = '/home/station-blanche/logs/log_fichier.log'
+    elif log_type == 'scan':
+        log_path = '/home/station-blanche/logs/log_scan.log'
+    else:
+        return jsonify({"error": "Unsupported log type"}), 400
+    
+    if not os.path.exists(log_path):
+        return jsonify({"error": f"Log file for {log_type} not found"}), 404
+    
+    conn = get_db_connection()
+    cur = conn.cursor()
+    
+    try:
+        with open(log_path, 'r') as f:
+            lines = f.read().splitlines()
+        
+        for line in lines:
+            if line.strip():  # Ignorer les lignes vides
+                try:
+                    log_entry = json.loads(line)
+                    if log_type == 'usb':
+                        cur.execute(
+                            "INSERT IGNORE INTO usb (id_usb, nom, filesystem, taille, date_insertion) VALUES (%s, %s, %s, %s, %s)",
+                            (log_entry['id_usb'], log_entry['nom'], log_entry['filesystem'], log_entry['taille'], log_entry['date_insertion'])
+                        )
+                    elif log_type == 'file':
+                        cur.execute(
+                            "INSERT IGNORE INTO fichiers (id_fichier, id_scan, nom, chemin, taille, statut) VALUES (%s, %s, %s, %s, %s, %s)",
+                            (log_entry['id_fichier'], log_entry['id_scan'], log_entry['nom'], log_entry['chemin'], log_entry['taille'], log_entry['statut'])
+                        )
+                    elif log_type == 'scan':
+                        cur.execute(
+                            "INSERT IGNORE INTO scans (id_scan, id_usb, date_scan, nb_fichier, etat_scan, infecte, duree) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                            (log_entry['id_scan'], log_entry['id_usb'], log_entry['date_scan'], log_entry['nb_fichier'], log_entry['etat_scan'], log_entry['infecte'], log_entry['duree'])
+                        )
+                except json.JSONDecodeError:
+                    continue  # Ignorer les lignes mal formées
+        
+        conn.commit()
+        return jsonify({"message": f"Logs {log_type} imported successfully"}), 200
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"error": str(e)}), 500
+    finally:
+        cur.close()
+        conn.close()
 
 if __name__ == '__main__':
     app.run(host='10.0.200.30', port=5000, debug=True)
