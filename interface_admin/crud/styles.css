@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fb;
+    color: #222;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(21, 89, 175, 0.12);
+}
+
+header h1 {
+    margin-top: 0;
+    color: #102a43;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #2f80ed;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.btn:hover {
+    background: #1d6dd6;
+}
+
+
+button {
+    margin: 8px 4px 0 0;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #2f80ed;
+    color: white;
+    cursor: pointer;
+    transition: transform .1s ease, background .2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    background: #1d6dd6;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.form-section {
+    background: #f0f4ff;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.form-section h2 {
+    margin-top: 0;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input {
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+}
+
+form button[type="submit"] {
+    grid-column: span 2;
+    background: #28a745;
+}
+
+form button[type="submit"]:hover {
+    background: #218838;
+}
+
+.results table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.results th,
+.results td {
+    border: 1px solid #cbd5e1;
+    padding: 8px 10px;
+    text-align: left;
+}
+
+.results th {
+    background: #0c4a6e;
+    color: #fff;
+}
+
+button:active {
+    transform: translateY(0);
+}
