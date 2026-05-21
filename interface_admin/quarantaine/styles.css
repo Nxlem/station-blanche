@@ -1,0 +1,279 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fb;
+    color: #222;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(21, 89, 175, 0.12);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #d9e2ec;
+    padding-bottom: 16px;
+}
+
+header h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #102a43;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #2f80ed;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    background: #1d6dd6;
+}
+
+button {
+    margin: 8px 4px 0 0;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #2f80ed;
+    color: white;
+    cursor: pointer;
+    transition: transform .1s ease, background .2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    background: #1d6dd6;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.quarantine-section {
+    margin-bottom: 18px;
+}
+
+.quarantine-section h2 {
+    color: #102a43;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f8fbff;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    color: #666;
+}
+
+.files-container {
+    overflow-x: auto;
+    background: #f8fbff;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.files-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.files-table th,
+.files-table td {
+    padding: 10px 12px;
+    border: 1px solid #d9e2ec;
+    text-align: left;
+    vertical-align: top;
+}
+
+.files-table th {
+    background: #e8efff;
+    color: #102a43;
+    font-weight: 600;
+}
+
+.files-table tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+.files-table tbody tr:nth-child(even) {
+    background: #f5f7fb;
+}
+
+.file-name {
+    font-weight: 500;
+    color: #102a43;
+}
+
+.file-icon {
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.file-type {
+    color: #334e68;
+    font-size: 0.95rem;
+}
+
+.file-size {
+    color: #334e68;
+    font-size: 0.95rem;
+}
+
+.file-date {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.file-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform .1s ease, background .2s ease;
+    white-space: nowrap;
+}
+
+.btn-restore {
+    background: #22c55e;
+    color: white;
+}
+
+.btn-restore:hover {
+    background: #16a34a;
+    transform: translateY(-1px);
+}
+
+.btn-restore:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-delete {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+.btn-delete:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateX(400px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    max-width: 400px;
+    box-shadow: 0 6px 18px rgba(21, 89, 175, 0.12);
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification-success {
+    background: #22c55e;
+    color: white;
+}
+
+.notification-error {
+    background: #ef4444;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 12px auto;
+        padding: 12px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .files-table {
+        font-size: 0.9rem;
+    }
+
+    .files-table th,
+    .files-table td {
+        padding: 8px;
+    }
+
+    .btn-action {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .files-table th,
+    .files-table td {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+
+    .file-icon {
+        display: none;
+    }
+
+    .btn-action {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+}
