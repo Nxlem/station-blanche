@@ -374,6 +374,68 @@ def import_logs():
         cur.close()
         conn.close()
 
+# Partie Etudiant 3
+
+REPORTS_DIR = "/home/station-blanche/rapports"
+
+# Endpoint pour lister les rapports disponibles
+@app.route('/reports', methods=['GET'])
+def list_reports():
+    try:
+        if not os.path.exists(REPORTS_DIR):
+            return jsonify({'error': 'Dossier introuvable'}), 404
+
+        files = []
+
+        for filename in os.listdir(REPORTS_DIR):
+            filepath = os.path.join(REPORTS_DIR, filename)
+
+            # uniquement les fichiers texte
+            if os.path.isfile(filepath) and filename.endswith('.txt'):
+                stat = os.stat(filepath)
+
+                files.append({
+                    'name': filename,
+                    'size': stat.st_size,
+                    'modified': datetime.datetime.fromtimestamp(
+                        stat.st_mtime
+                    ).isoformat()
+                })
+
+        return jsonify({'reports': files}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Endpoint pour récupérer le contenu d'un rapport spécifique
+@app.route('/reports/<path:filename>', methods=['GET'])
+def get_report(filename):
+
+    # sécurité anti path traversal
+    if '..' in filename or filename.startswith('/'):
+        return jsonify({'error': 'Nom de fichier invalide'}), 400
+
+    filepath = os.path.join(REPORTS_DIR, filename)
+
+    if not os.path.isfile(filepath):
+        return jsonify({'error': 'Fichier introuvable'}), 404
+
+    # uniquement les .txt
+    if not filename.endswith('.txt'):
+        return jsonify({'error': 'Format non autorisé'}), 403
+
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        return jsonify({
+            'filename': filename,
+            'content': content
+        }), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     app.run(host='10.0.200.30', port=5000, debug=True)
 
