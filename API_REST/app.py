@@ -437,6 +437,6 @@ def get_report(filename):
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='10.0.200.30', port=5000, debug=True)
+    app.run(host='192.168.2.113', port=5000, debug=True)
 
  
