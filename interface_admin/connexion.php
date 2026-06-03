@@ -107,7 +107,7 @@
 
             <?php
                 // Test de connexion à l'API
-                $api_url = "http://10.0.200.30:5000/user";
+                $api_url = "http://192.168.2.113:5000/user";
                 $context = stream_context_create([
                     "http" => [
                         "method" => "GET",
@@ -142,6 +142,7 @@
 
         </div>
     </body>
+
 </html>
 
         

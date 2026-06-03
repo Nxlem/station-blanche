@@ -9,7 +9,7 @@ if (!isset($_SESSION['login'])) {
 
 // Si id_user n'est pas défini mais login oui, récupérer id_user depuis l'API
 if (isset($_SESSION['login']) && !isset($_SESSION['id_user'])) {
-    $api_url = "http://10.0.200.30:5000/user";
+    $api_url = "http://192.168.2.113:5000/user";
     $context = stream_context_create([
         "http" => [
             "method" => "GET",

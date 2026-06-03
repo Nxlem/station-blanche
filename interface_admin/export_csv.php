@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['data'])) {
     }
 
     // Récupérer les logs via l'API
-    $api_base = 'http://10.0.200.30:5000';
+    $api_base = 'http://192.168.2.113:5000';
     $endpoints = [
         'usb' => '/usb',
         'fichiers' => '/file',
