@@ -65,6 +65,12 @@ Dossier :
 /home/station-blanche/API_REST/
 ```
 
+Adrese IP :
+
+```text
+192.168.2.113
+```
+
 Technologies :
 
 * Python
@@ -80,12 +86,6 @@ Dossier :
 
 ```text
 /var/www/html/interface_admin/
-```
-
-Adrese IP :
-
-```text
-192.168.2.113
 ```
 
 Technologies :
