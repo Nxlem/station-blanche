@@ -62,7 +62,7 @@ Le projet est composé de deux parties principales :
 Dossier :
 
 ```text
-API_REST/
+/home/station-blanche/API_REST/
 ```
 
 Technologies :
@@ -79,7 +79,7 @@ L'API permet l'accès aux données stockées dans la base de données.
 Dossier :
 
 ```text
-interface_admin/
+/var/www/html/interface_admin/
 ```
 
 Technologies :
@@ -117,11 +117,11 @@ Permet d'importer les données contenues dans les fichiers de logs de la Station
 
 #### Fonctionnement :
 
-Reçoit un type de log au format JSON (usb, file ou scan).
-Lit le fichier de log correspondant sur le serveur.
-Parcourt chaque entrée du fichier.
-Convertit les données JSON en enregistrements SQL.
-Insère les informations dans les tables correspondantes de la base de données.
+- Reçoit un type de log au format JSON (usb, file ou scan).
+- Lit le fichier de log correspondant sur le serveur.
+- Parcourt chaque entrée du fichier.
+- Convertit les données JSON en enregistrements SQL.
+- Insère les informations dans les tables correspondantes de la base de données.
 
 #### Types pris en charge :
 
@@ -224,13 +224,13 @@ https://station-blanche.local/interface_admin/connexion.php
 ## Mot de passe essentiels
 
 ### Rasperry
-login : station-blanche
-mdp : 252106
+- login : station-blanche
+- mdp : 252106
 
 ## MySQL
-login : admin
-mdp : 252106
-nom de la bdd : station_blanche
+- login : admin
+- mdp : 252106
+- nom de la bdd : station_blanche
 
 ---
 
