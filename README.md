@@ -82,6 +82,12 @@ Dossier :
 /var/www/html/interface_admin/
 ```
 
+Adrese IP :
+
+```text
+192.168.2.113
+```
+
 Technologies :
 
 * PHP
